@@ -24,15 +24,11 @@ end
 %                                                        Network evaluation
 % -------------------------------------------------------------------------
 
-%models =  {'imagenet-vgg-m', ...
-%           'imagenet-vgg-verydeep-16', ...
-%           'imagenet-caffe-alex', ...
-%           'imagenet-caffe-ref', ...
-%           'imagenet-vgg-f'}  ;
-
-%models = {'sam-vgg-16'};
-
-models = {'vgg-face'};
+models =  {'imagenet-vgg-m', ...
+           'imagenet-vgg-verydeep-16', ...
+           'imagenet-caffe-alex', ...
+           'imagenet-caffe-ref', ...
+           'imagenet-vgg-f'}  ;
 
 gpuDevice(1) ;
 
@@ -42,11 +38,6 @@ for i = 1:numel(models)
   net = load(sprintf('data/models/%s.mat', models{i})) ;
 
   if(isfield(net, 'net')), net = net.net;  end
-%  if(isfield(net, 'vars')) % Hacky way to check if it is a dagnn
-%    net_dag = dagnn.DagNN.loadobj(net);
-%    net_dag = cnn_imagenet_deploy(net_dag);
-%    net = dagnn2simplenn(net_dag, false);
-%  end
 
   net = vl_simplenn_tidy(net);
   net = vl_simplenn_move(net,'gpu') ;
