@@ -14,7 +14,7 @@ fi
 
 if [ ! -r "data/pics/pics.zip" ]; then
   # CAUTION: I assume that if this zip file exists then all the images are already there.
-  wget http://gandalf.robots.ox.ac.uk:8089/html/ijcv2015/data/pics.zip -O data/pics/pics.zip
+  wget http://gandalf.robots.ox.ac.uk/ijcv2015/data/pics.zip -O data/pics/pics.zip
   cd data/pics/
   unzip pics.zip
   cd ../../
